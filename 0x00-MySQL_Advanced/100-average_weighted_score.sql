@@ -2,7 +2,7 @@
 -- the average weighted score of a student
 DELIMITER //
 
-CREATE PROCEDURE ComputeAverageScoreForUser(
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser(
     IN user_id int
 )
 BEGIN
