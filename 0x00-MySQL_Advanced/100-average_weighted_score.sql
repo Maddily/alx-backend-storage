@@ -8,7 +8,7 @@ CREATE PROCEDURE ComputeAverageWeightedScoreForUser(
 BEGIN
     DECLARE weighted_sum float;
     DECLARE total_weight int;
-    DECLARE average_weighted_score DECIMAL(10, 2);
+    DECLARE average_weighted_score FLOAT;
 
     -- Calculate the user's weighted sum
     SELECT SUM(corrections.score * projects.weight)
