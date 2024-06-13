@@ -4,7 +4,7 @@ DELIMITER //
 
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
-    DECLARE done boolean DEFAULT FALSE;
+    DECLARE done int DEFAULT FALSE;
     DECLARE user_id int;
     DECLARE weighted_sum float;
     DECLARE total_weight int;
