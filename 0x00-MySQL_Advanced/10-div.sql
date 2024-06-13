@@ -4,7 +4,7 @@
 DELIMITER //
 
 CREATE FUNCTION SafeDiv(a int, b int)
-RETURNS DECIMAL(10, 2)
+RETURNS float
 BEGIN
     IF b = 0 THEN
         RETURN 0;
