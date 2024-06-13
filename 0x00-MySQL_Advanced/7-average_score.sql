@@ -14,13 +14,13 @@ BEGIN
     SELECT SUM(score)
     INTO total_score
     FROM corrections
-    WHERE user_id = user_id;
+    WHERE corrections.user_id = user_id;
 
     -- Calculate the number of corrections
     SELECT COUNT(user_id)
     INTO no_of_corrections
     FROM corrections
-    WHERE user_id = user_id;
+    WHERE corrections.user_id = user_id;
 
     -- Calculate the average score
     IF no_of_corrections > 0 THEN
@@ -30,8 +30,8 @@ BEGIN
     END IF;
 
     UPDATE users
-    SET average_score = average_score
-    WHERE id = user_id;
+    SET users.average_score = average_score
+    WHERE users.id = user_id;
 END //
 
 DELIMITER ;
