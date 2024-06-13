@@ -10,7 +10,7 @@ CREATE PROCEDURE AddBonus(
 BEGIN
     INSERT IGNORE INTO projects (name) VALUES (project_name);
     INSERT INTO corrections (user_id, project_id, score)
-    VALUES (user_id, (SELECT id FROM projects WHERE name = project_name), score);
+    VALUES (user_id, (SELECT id FROM projects WHERE name = project_name LIMIT 1), score);
 END //
 
 DELIMITER ;
