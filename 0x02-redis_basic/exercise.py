@@ -4,7 +4,7 @@ This module contains a Cache class that
 interacts with Redis to store data.
 """
 import redis
-from typing import Union
+from typing import Union, Callable, Optional
 import uuid
 
 
@@ -21,7 +21,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb(True)
 
-    def store(self, data: Union[str | bytes | int | float]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         Stores the given data in Redis and returns the generated key.
 
