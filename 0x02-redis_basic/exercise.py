@@ -53,6 +53,35 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(method: Callable) -> None:
+    """
+    Display the history of calls of a particular function.
+    """
+
+    if not callable(method):
+        return
+
+    redis_instance = getattr(method, '__self__', None)
+    if not isinstance(redis_instance, Cache):
+        return
+
+    redis_client = redis_instance._redis
+    method_name = method.__qualname__
+
+    inputs_key = f"{method_name}:inputs"
+    outputs_key = f"{method_name}:outputs"
+
+    inputs = redis_client.lrange(inputs_key, 0, -1)
+    outputs = redis_client.lrange(outputs_key, 0, -1)
+
+    print(f"{method_name} was called {len(inputs)} times:")
+
+    for input_, output in zip(inputs, outputs):
+        input_str = input_.decode('utf-8')
+        output_str = output.decode('utf-8')
+        print("{}(*{}) -> {}".format(method_name, input_str, output_str))
+
+
 class Cache:
     """
     Cache class for storing data in Redis.
